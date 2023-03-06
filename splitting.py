@@ -3,6 +3,7 @@ import PyPDF2
 import re
 import tempfile
 
+global filenamelist
 filenamelist = []
 
 def FindPageNumber(pageObj):
