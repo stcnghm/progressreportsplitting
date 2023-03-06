@@ -3,6 +3,8 @@ import PyPDF2
 import re
 import tempfile
 
+global filenamelist
+
 def FindPageNumber(pageObj):
   text = pageObj.extract_text()
   lines = text.splitlines()
@@ -50,8 +52,7 @@ def SplitReport(pdfFileObj, outdir="",alreadyOpened=False):
     
   # creating a pdf reader object
   pdfReader = PyPDF2.PdfReader(pdfFileObj)
-  
-  global filenamelist 
+   
   filenamelist = []
   #outdir = 'doublepagereports/'
   prevpageObj = pdfReader.pages[0]
