@@ -82,4 +82,4 @@ def SplitReport(reportname, outdir):
   # closing the pdf file object
   pdfFileObj.close()
   
-SplitReport('report883.pdf', 'doublepagereports/')
+#SplitReport('report883.pdf', 'doublepagereports/')
