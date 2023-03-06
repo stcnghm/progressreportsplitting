@@ -5,6 +5,7 @@ import tempfile
 
 class Splitter():
     filenamelist = []
+    outdir = ''
     def FindPageNumber(self, pageObj):
       text = pageObj.extract_text()
       lines = text.splitlines()
@@ -47,12 +48,13 @@ class Splitter():
       if not alreadyOpened:
         pdfFileObj = open(pdfFileObj, 'rb')
       if outdir=="":
-        outdir = tempfile.TemporaryDirectory().name + '/'
+        self.outdir = tempfile.TemporaryDirectory().name + '/'
+      else:
+        self.outdir = outdir
         
       # creating a pdf reader object
       pdfReader = PyPDF2.PdfReader(pdfFileObj)
        
-      #outdir = 'doublepagereports/'
       prevpageObj = pdfReader.pages[0]
       prevname = self.FindName(prevpageObj)
       prevdate = self.FindDate(prevpageObj)
@@ -68,21 +70,21 @@ class Splitter():
         date = self.FindDate(pageObj)
         filename = f"{name}-{date}.pdf"
         if self.FindPageNumber(pageObj)==1:
-          newPrevFileName = outdir+prevfilename
+          newPrevFileName = self.outdir+prevfilename
           self.WriteReport(newPrevFileName, pdfWriter)
           self.filenamelist.append(newPrevFileName)
           pdfWriter = PyPDF2.PdfWriter()
           pdfWriter.add_page(pageObj)
           prevfilename = filename
           if i==len(pdfReader.pages)-1:
-            newPrevFileName = outdir+prevfilename
+            newPrevFileName = self.outdir+prevfilename
             self.WriteReport(newPrevFileName, pdfWriter)
             self.filenamelist.append(newPrevFileName)
             pdfWriter = PyPDF2.PdfWriter()
             prevfilename = filename
         elif i==len(pdfReader.pages)-1:
           pdfWriter.add_page(pageObj)
-          newPrevFileName = outdir+prevfilename
+          newPrevFileName = self.outdir+prevfilename
           self.WriteReport(newPrevFileName, pdfWriter)
           self.filenamelist.append(newPrevFileName)
           prevfilename = filename
