@@ -39,9 +39,10 @@ def WriteReport(filename, writer):
     writer.write(newFile)
     newFile.close()
 
-def SplitReport(reportname, outdir):
+def SplitReport(pdfFileObj, outdir="reports/",alreadyOpened=False):
   # creating a pdf file object
-  pdfFileObj = open(reportname, 'rb')
+  if not alreadyOpened:
+      pdfFileObj = open(pdfFileObj, 'rb')
     
   # creating a pdf reader object
   pdfReader = PyPDF2.PdfReader(pdfFileObj)
