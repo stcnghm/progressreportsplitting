@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import PyPDF2
 import re
-import os
+import tempfile
 
 class Splitter():
     filenamelist = []
@@ -47,7 +47,7 @@ class Splitter():
       # creating a pdf file object
       if not alreadyOpened:
         pdfFileObj = open(pdfFileObj, 'rb')
-      self.outdir = os.mkdir("/output/")
+        self.outdir = tempfile.TemporaryDirectory().name
 
         
       # creating a pdf reader object
