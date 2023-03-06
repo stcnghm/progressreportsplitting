@@ -49,7 +49,7 @@ class Splitter():
       # creating a pdf file object
       if not alreadyOpened:
         pdfFileObj = open(pdfFileObj, 'rb')
-      self.outdir = tempfile.TemporaryDirectory().name + '/'
+      self.outdir = tempfile.TemporaryDirectory().name
 
         
       # creating a pdf reader object
