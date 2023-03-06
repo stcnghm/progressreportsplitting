@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import PyPDF2
 import re
+import tempfile
 
 def FindPageNumber(pageObj):
   text = pageObj.extract_text()
@@ -39,10 +40,13 @@ def WriteReport(filename, writer):
     writer.write(newFile)
     newFile.close()
 
-def SplitReport(pdfFileObj, outdir="reports/",alreadyOpened=False):
+def SplitReport(pdfFileObj, outdir="",alreadyOpened=False):
   # creating a pdf file object
   if not alreadyOpened:
-      pdfFileObj = open(pdfFileObj, 'rb')
+    pdfFileObj = open(pdfFileObj, 'rb')
+
+  if outdir=="":
+    outdir = tempfile.TemporaryDirectory().name
     
   # creating a pdf reader object
   pdfReader = PyPDF2.PdfReader(pdfFileObj)
