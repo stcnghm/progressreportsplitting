@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import PyPDF2
 import re
-import tempfile
+import os
 
 class Splitter():
     filenamelist = []
@@ -43,14 +43,12 @@ class Splitter():
         writer.write(newFile)
         newFile.close()
     
-    def SplitReport(self, pdfFileObj, outdir="",alreadyOpened=False):
+    def SplitReport(self, pdfFileObj, alreadyOpened=False):
       # creating a pdf file object
       if not alreadyOpened:
         pdfFileObj = open(pdfFileObj, 'rb')
-      if outdir=="":
-        self.outdir = tempfile.TemporaryDirectory().name + '/'
-      else:
-        self.outdir = outdir
+      self.outdir = os.mkdir("/output/")
+
         
       # creating a pdf reader object
       pdfReader = PyPDF2.PdfReader(pdfFileObj)
