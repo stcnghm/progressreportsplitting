@@ -10,4 +10,4 @@ st.sidebar.write("## Upload and download")
 mainreport = st.sidebar.file_uploader("Upload a report", type=["pdf"])
 
 st.sidebar.button(label="Split Report", on_click=splitting.SplitReport(mainreport,alreadyOpened=True))
-st.sidebar.multiselect(label="Individual Reports", options=filenamelist)
+st.sidebar.multiselect(label="Individual Reports", options=filenamelist, default=filenamelist)

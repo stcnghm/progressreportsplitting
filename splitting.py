@@ -46,7 +46,6 @@ class Splitter():
       # creating a pdf file object
       if not alreadyOpened:
         pdfFileObj = open(pdfFileObj, 'rb')
-    
       if outdir=="":
         outdir = tempfile.TemporaryDirectory().name
         
@@ -59,6 +58,7 @@ class Splitter():
       prevdate = self.FindDate(prevpageObj)
       prevfilename = f"{prevname}-{prevdate}.pdf"
       pdfWriter = PyPDF2.PdfWriter()
+      
       pdfWriter.add_page(prevpageObj)
       
       for i in range(1, len(pdfReader.pages)): 
