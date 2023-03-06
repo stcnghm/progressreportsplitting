@@ -2,6 +2,7 @@
 import PyPDF2
 import re
 import tempfile
+import streamlit as st
 
 class Splitter():
     filenamelist = []
@@ -43,6 +44,7 @@ class Splitter():
         writer.write(newFile)
         newFile.close()
     
+    @st.cache()
     def SplitReport(self, pdfFileObj, alreadyOpened=False):
       # creating a pdf file object
       if not alreadyOpened:
