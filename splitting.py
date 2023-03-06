@@ -51,6 +51,7 @@ def SplitReport(pdfFileObj, outdir="",alreadyOpened=False):
   # creating a pdf reader object
   pdfReader = PyPDF2.PdfReader(pdfFileObj)
   
+  filenamelist = []
   #outdir = 'doublepagereports/'
   prevpageObj = pdfReader.pages[0]
   prevname = FindName(prevpageObj)
@@ -68,23 +69,28 @@ def SplitReport(pdfFileObj, outdir="",alreadyOpened=False):
     if FindPageNumber(pageObj)==1:
       newPrevFileName = outdir+prevfilename
       WriteReport(newPrevFileName, pdfWriter)
+      filenamelist.append(newPrevFileName)
       pdfWriter = PyPDF2.PdfWriter()
       pdfWriter.add_page(pageObj)
       prevfilename = filename
       if i==len(pdfReader.pages)-1:
         newPrevFileName = outdir+prevfilename
         WriteReport(newPrevFileName, pdfWriter)
+        filenamelist.append(newPrevFileName)
         pdfWriter = PyPDF2.PdfWriter()
         prevfilename = filename
     elif i==len(pdfReader.pages)-1:
       pdfWriter.add_page(pageObj)
       newPrevFileName = outdir+prevfilename
       WriteReport(newPrevFileName, pdfWriter)
+      filenamelist.append(newPrevFileName)
       prevfilename = filename
     else:
       pdfWriter.add_page(pageObj)
   
   # closing the pdf file object
   pdfFileObj.close()
+  return filenamelist
   
-#SplitReport('report883.pdf', 'doublepagereports/')
+#names = SplitReport('report883.pdf', 'doublepagereports/')
+#print(names)
