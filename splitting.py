@@ -47,7 +47,7 @@ class Splitter():
       if not alreadyOpened:
         pdfFileObj = open(pdfFileObj, 'rb')
       if outdir=="":
-        outdir = tempfile.TemporaryDirectory().name + '/'
+        outdir = tempfile.TemporaryDirectory().name
         
       # creating a pdf reader object
       pdfReader = PyPDF2.PdfReader(pdfFileObj)
