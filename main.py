@@ -1,5 +1,6 @@
 import streamlit as st
 import splitting
+import os
 
 st.set_page_config(layout="wide", page_title="Aspen Progress Report Splitter")
 splitter = splitting.Splitter()
@@ -12,7 +13,7 @@ sbcont2.write(" ")
 
 def splitreportbuttonfunction(*args):
   splitter.SplitReport(*args)
-  sbcont2.download_button("Download",open(splitter.outdir, 'rb'), splitter.outdir, mime='application/zip')
+  sbcont2.download_button("Download",open(splitter.outdir, 'rb'), splitter.outdir, mime='application/zip',on_click=os.remove, args=(splitter.outdir,))
 
 mainreport = sbcont1.file_uploader("Upload a report", type=["pdf"])
 
