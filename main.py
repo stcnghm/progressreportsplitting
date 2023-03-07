@@ -18,4 +18,4 @@ def splitreportbuttonfunction(*args):
 mainreport = sbcont1.file_uploader("Upload a report", type=["pdf"])
 
 outdir = sbcont1.text_input("Enter a name to be used as the folder name to download", value='reports')
-sbcont1.button(label="Split Report", on_click=splitreportbuttonfunction, args=(mainreport, outdir, True))
+sbcont1.button(label="Split Report", on_click=splitreportbuttonfunction, args=(mainreport, outdir.replace(' ', '_'), True))
