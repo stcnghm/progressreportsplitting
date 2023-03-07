@@ -3,6 +3,7 @@ import splitting
 
 
 splitter = splitting.Splitter()
+st.sidebar()
 sbcont1 = st.sidebar.container()
 sbcont2 = st.sidebar.container()
 
