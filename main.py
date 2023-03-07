@@ -15,4 +15,5 @@ if mainreport:
 filenamelist = splitter.filenamelist
 for i in range(len(filenamelist)):
     filenamelist[i] = filenamelist[i].split('/')[-1]
+print(f'Filenames: {filenamelist}')
 st.sidebar.multiselect(label="Individual Reports", options=filenamelist, default=filenamelist)
