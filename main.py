@@ -9,8 +9,8 @@ st.write("## Split PDF with progress reports for a whole class into individual P
 st.sidebar.write("## Upload and download")
 mainreport = st.sidebar.file_uploader("Upload a report", type=["pdf"])
 
-st.sidebar.text_input("Enter a name to be used as the folder name to download", value='reports')
-st.sidebar.button(label="Split Report", on_click=splitter.SplitReport, args=(mainreport, True))
+outdir = st.sidebar.text_input("Enter a name to be used as the folder name to download", value='reports')
+st.sidebar.button(label="Split Report", on_click=splitter.SplitReport, args=(mainreport, outdir, True))
 # if mainreport:
 #   st.sidebar.download_button(label='Download', data=mainreport, mime='application/pdf')
 # filenamelist = splitter.filenamelist
