@@ -44,7 +44,6 @@ class Splitter():
         writer.write(newFile)
         newFile.close()
     
-    @st.cache_data()
     def SplitReport(self, pdfFileObj, alreadyOpened=False):
       # creating a pdf file object
       if not alreadyOpened:
