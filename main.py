@@ -7,7 +7,8 @@ splitter = splitting.Splitter()
 st.write("## Split PDF with progress reports for a whole class into individual PDFs for each student")
 st.sidebar.write("## Upload and download")
 sbcont1 = st.sidebar.container()
-sbcont2 = st.sidebar.empty()
+sbcont2 = st.sidebar.container()
+sbcont2.write(" ")
 
 def splitreportbuttonfunction(*args):
   splitter.SplitReport(*args)
