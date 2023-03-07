@@ -52,7 +52,7 @@ class Splitter():
       if not alreadyOpened:
         pdfFileObj = open(pdfFileObj, 'rb')
       if outdir=="":
-        self.outdir = '/tmp/'
+        self.outdir = 'reports'
       else:
         self.outdir = outdir
 
