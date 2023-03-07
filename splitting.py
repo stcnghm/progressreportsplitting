@@ -3,6 +3,8 @@ import PyPDF2
 import re
 import tempfile
 import streamlit as st
+import zipfile
+import io
 
 class Splitter():
     filenamelist = []
@@ -40,15 +42,19 @@ class Splitter():
             return line
     
     def WriteReport(self, filename, writer):
-        newFile = open(filename, 'wb')
-        writer.write(newFile)
-        newFile.close()
+      with zipfile.ZipFile(self.outdir, 'a') as zf:
+        pdf_buffer = io.BytesIO()
+        writer.write(pdf_buffer)
+        zf.writestr(filename, pdf_buffer.getvalue())
     
-    def SplitReport(self, pdfFileObj, alreadyOpened=False):
+    def SplitReport(self, pdfFileObj, outdir, alreadyOpened=False):
       # creating a pdf file object
       if not alreadyOpened:
         pdfFileObj = open(pdfFileObj, 'rb')
-      self.outdir = '/tmp/'
+      if outdir=="":
+        self.outdir = '/tmp/'
+      else:
+        self.outdir = outdir
 
         
       # creating a pdf reader object
