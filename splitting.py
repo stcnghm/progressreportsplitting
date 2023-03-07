@@ -52,9 +52,9 @@ class Splitter():
       if not alreadyOpened:
         pdfFileObj = open(pdfFileObj, 'rb')
       if outdir=="":
-        self.outdir = 'reports'
+        self.outdir = 'reports.zip'
       else:
-        self.outdir = outdir
+        self.outdir = outdir + '.zip'
 
         
       # creating a pdf reader object
@@ -75,23 +75,20 @@ class Splitter():
         date = self.FindDate(pageObj)
         filename = f"{name}-{date}.pdf"
         if self.FindPageNumber(pageObj)==1:
-          newPrevFileName = self.outdir+prevfilename
-          self.WriteReport(newPrevFileName, pdfWriter)
-          self.filenamelist.append(newPrevFileName)
+          self.WriteReport(prevfilename, pdfWriter)
+          self.filenamelist.append(prevfilename)
           pdfWriter = PyPDF2.PdfWriter()
           pdfWriter.add_page(pageObj)
           prevfilename = filename
           if i==len(pdfReader.pages)-1:
-            newPrevFileName = self.outdir+prevfilename
-            self.WriteReport(newPrevFileName, pdfWriter)
-            self.filenamelist.append(newPrevFileName)
+            self.WriteReport(prevfilename, pdfWriter)
+            self.filenamelist.append(prevfilename)
             pdfWriter = PyPDF2.PdfWriter()
             prevfilename = filename
         elif i==len(pdfReader.pages)-1:
           pdfWriter.add_page(pageObj)
-          newPrevFileName = self.outdir+prevfilename
-          self.WriteReport(newPrevFileName, pdfWriter)
-          self.filenamelist.append(newPrevFileName)
+          self.WriteReport(prevfilename, pdfWriter)
+          self.filenamelist.append(prevfilename)
           prevfilename = filename
         else:
           pdfWriter.add_page(pageObj)
