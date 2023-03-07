@@ -5,7 +5,7 @@ import splitting
 splitter = splitting.Splitter()
 
 def splitreportbuttonfunction(*args):
-  splitter.SplitReport(args)
+  splitter.SplitReport(*args)
   st.sidebar.download_button("Download",outdir)
   
 st.set_page_config(layout="wide", page_title="Aspen Progress Report Splitter")
