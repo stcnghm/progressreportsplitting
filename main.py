@@ -12,7 +12,7 @@ sbcont2.write(" ")
 
 def splitreportbuttonfunction(*args):
   splitter.SplitReport(*args)
-  sbcont2.download_button("Download",splitter.outdir, splitter.outdir)
+  sbcont2.download_button("Download",open(splitter.outdir), splitter.outdir, mime='application/zip')
 
 mainreport = sbcont1.file_uploader("Upload a report", type=["pdf"])
 
