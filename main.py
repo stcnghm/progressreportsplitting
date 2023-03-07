@@ -3,7 +3,7 @@ import splitting
 
 st.set_page_config(layout="wide", page_title="Aspen Progress Report Splitter")
 splitter = splitting.Splitter()
-st.sidebar()
+st.sidebar
 sbcont1 = st.sidebar.container()
 sbcont2 = st.sidebar.container()
 
