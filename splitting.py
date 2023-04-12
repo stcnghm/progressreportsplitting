@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 import PyPDF2
 import re
-import tempfile
-import streamlit as st
 import zipfile
 import io
 
@@ -96,5 +94,3 @@ class Splitter():
       # closing the pdf file object
       pdfFileObj.close()
       
-    #SplitReport('report883.pdf', 'doublepagereports/')
-    #print(filenamelist)
